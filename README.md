@@ -21,17 +21,17 @@ Or install it yourself as:
     $ gem install tomosia_wallhere_crawl
 
 ## Usage
-_NOTE: key = "tag" , destination: "url saving" , max :number image
+****_NOTE: key = "tag" , destination: "url saving" , max :number image****
 
-_/ Crawl all image in tag!
-tomosia_wallhere_crawl crawl "key" --destination " "
-=> tomosia_wallhere_crawl crawl "aaa" --destination "/home/tung/Desktop/img/"
+*****_/ Crawl all image in tag!*****
+*******tomosia_wallhere_crawl crawl "key" --destination " "*******
+*******=> tomosia_wallhere_crawl crawl "aaa" --destination "/home/tung/Desktop/img/"*******
 
-_/ Crawl all images in tag with number of images!
-tomosia_wallhere_crawl crawl "key" --destination " " --max
-=> tomosia_wallhere_crawl crawl "aaa" --destination "/home/tung/Desktop/img/" --max=100
+*****_/ Crawl all images in tag with number of images!*****
+******tomosia_wallhere_crawl crawl "key" --destination " " --max*******
+*******=> tomosia_wallhere_crawl crawl "aaa" --destination "/home/tung/Desktop/img/" --max=100*******
 
-File save info images of tag in destination
+****File save info images of tag in "destination"****
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
