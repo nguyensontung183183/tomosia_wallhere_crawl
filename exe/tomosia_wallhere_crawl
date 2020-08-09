@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'tomosia_wallhere_crawl/cli'
+TomosiaWallhereCrawl::Cli.start

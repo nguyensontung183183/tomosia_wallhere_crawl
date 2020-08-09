@@ -88,4 +88,5 @@ module TomosiaWallhereCrawl
 	end
 end
 end
-TomosiaWallhereCrawl::CrawlImage.new.crawldata('dog', '/home/tung/Desktop/img/',100)
+
+

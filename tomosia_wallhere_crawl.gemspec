@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
 
   spec.files         = `git ls-files`.split("\n")
   spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.executables   = ["tomosia_wallhere_crawl"]
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'thor'

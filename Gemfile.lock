@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tomosia_wallhere_crawl (0.1.0)
+    tomosia_wallhere_crawl (0.1.1)
       thor
 
 GEM
