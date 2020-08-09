@@ -2,7 +2,9 @@ PATH
   remote: .
   specs:
     tomosia_wallhere_crawl (0.1.1)
+      nokogiri
       thor
+      writeexcel
 
 GEM
   remote: https://rubygems.org/
