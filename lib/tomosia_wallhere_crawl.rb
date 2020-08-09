@@ -5,8 +5,8 @@ require 'thor'
 module TomosiaWallhereCrawl
 	class CrawlImage < Thor
 
-		def savedata (data = {}, description)
-		  workbook  = WriteExcel.new("#{description}/InfoImage.xls")
+		def savedata (data = {}, destination)
+		  workbook  = WriteExcel.new("#{destination}/InfoImage.xls")
 		  worksheet = workbook.add_worksheet
 		    data.each_with_index do |row, stt|
 		    row.each do |key, value|
@@ -20,7 +20,7 @@ module TomosiaWallhereCrawl
 			puts "Save successfully"
 		end
 
-		def crawldata(key,description,max=nil)	
+		def crawldata(key,destination,max=nil)	
 			  	sum = 0
 					index = 1
 					images = []
@@ -48,10 +48,10 @@ module TomosiaWallhereCrawl
 					  		end
 				    	index += 1
 					end
-					download(images,description)
+					download(images,destination)
 			end
 
-		def download(images,description)
+		def download(images,destination)
 			data = []
 			row = {}
 			thread = []
@@ -64,7 +64,7 @@ module TomosiaWallhereCrawl
 							ui = img
 							ex = File.extname(img).delete('.!s')
 							size = ""
-							File.open("#{description}#{nameimg}","wb") do |file|
+							File.open("#{destination}#{nameimg}","wb") do |file|
 								file.write(image.read)
 								size = image.size
 							end
@@ -85,7 +85,7 @@ module TomosiaWallhereCrawl
 			thread.each {|t| t.join}
 			puts " "
 			puts "Download successfully"
-			savedata(data,description)
+			savedata(data,destination)
 	end
 end
 end
