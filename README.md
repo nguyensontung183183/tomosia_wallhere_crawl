@@ -22,9 +22,9 @@ Or install it yourself as:
 
 ## Usage
 ****NOTE: key = "tag" , destination: "url saving" , max :number image**** <br/>
-- Crawl all image in tag!*****<br/>
+- Crawl all image in tag!<br/>
 $ tomosia_wallhere_crawl crawl "key" --destination " "<br/>
-ex: $ tomosia_wallhere_crawl crawl "aaa" --destination "/home/tung/Desktop/img/"*******<br/>
+ex: $ tomosia_wallhere_crawl crawl "aaa" --destination "/home/tung/Desktop/img/"<br/>
 - Crawl images in tag with number of images!<br/>
 $ tomosia_wallhere_crawl crawl "key" --destination " " --max<br/>
 ex: $  tomosia_wallhere_crawl crawl "aaa" --destination "/home/tung/Desktop/img/" --max=100 <br/>
