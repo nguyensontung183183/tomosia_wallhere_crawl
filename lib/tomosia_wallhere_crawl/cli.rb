@@ -7,7 +7,7 @@ module TomosiaWallhereCrawl
     option :destination
     option :max
     def crawldata(keyword)
-      TomosiaIcon8Crawl::CrawlIcon8.crawldata(keyword, options[:destination], options[:max].to_i)
+      TomosiaWallhereCrawl::CrawlImage.crawldata(keyword, options[:destination], options[:max].to_i)
     end
   end
 end
