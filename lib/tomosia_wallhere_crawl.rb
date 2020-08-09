@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'writeexcel'
 require 'thor'
 module TomosiaWallhereCrawl
-	class CrawlImage < Thor
+	class CrawlImage
 
 		def savedata (data = {}, destination)
 		  workbook  = WriteExcel.new("#{destination}/InfoImage.xls")
@@ -31,21 +31,21 @@ module TomosiaWallhereCrawl
 				  	content = document.read
 				  	parsed_content = Nokogiri::HTML(content)				  
 				  	length = parsed_content.css('.item').to_a.length - 1
-						total_img = parsed_content.css('div.hub-totalinfo').text.split(' HD Wallpapers')[0].to_i
-						if max == nil || max > total_img
-							max = total_img
-							puts "This tag has #{total_img} pictures"	
-						end
+				  	if length == -1
+				  		break
+				  	else
 							i = 0
 					  	for i in i..length
 									urlimg = parsed_content.css('.item').to_a[i].children.children.first.to_h['src']
 									images.push(urlimg)
-										sum += 1
+										
 										print '.'
-							   	 	if max == sum
+										sum += 1
+							   	 	if max == sum 
 							      	break
 							    	end
-					  		end
+								end
+						end
 				    	index += 1
 					end
 					download(images,destination)
@@ -89,5 +89,6 @@ module TomosiaWallhereCrawl
 	end
 end
 end
+# TomosiaWallhereCrawl::CrawlImage.new.crawldata("aaa", "/home/tung/Desktop/img/", 10)
 
 

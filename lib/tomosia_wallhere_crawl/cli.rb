@@ -6,8 +6,8 @@ module TomosiaWallhereCrawl
     desc "crawl KEYWORD", "enter KEYWORD to search"
     option :destination
     option :max
-    def crawldata(keyword)
-      TomosiaWallhereCrawl::CrawlImage.crawldata(keyword, options[:destination], options[:max].to_i)
+    def crawl(keyword)
+      TomosiaWallhereCrawl::CrawlImage.new.crawldata(keyword, options[:destination], options[:max])
     end
   end
 end
