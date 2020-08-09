@@ -19,6 +19,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'thor'
+  spec.add_dependency 'nokogiri'
+  spec.add_dependency 'writeexcel'
+  spec.add_dependency 'thor'
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
