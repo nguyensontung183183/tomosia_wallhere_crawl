@@ -8,6 +8,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.4.4)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     rake (12.3.3)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -23,15 +26,18 @@ GEM
       rspec-support (~> 3.9.0)
     rspec-support (3.9.3)
     thor (1.0.1)
+    writeexcel (1.0.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bundler
+  nokogiri (~> 1.10, >= 1.10.10)
   rake (~> 12.0)
-  rspec
+  rspec (~> 3.0)
   tomosia_wallhere_crawl!
+  writeexcel (~> 1.0, >= 1.0.5)
 
 BUNDLED WITH
    2.1.4
