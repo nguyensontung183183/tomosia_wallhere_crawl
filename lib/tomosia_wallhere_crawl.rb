@@ -1,8 +1,9 @@
 require 'open-uri'
 require 'nokogiri'
 require 'writeexcel'
+require 'thor'
 module TomosiaWallhereCrawl
-	class CrawlImage
+	class CrawlImage < Thor
 
 		def savedata (data = {}, description)
 		  workbook  = WriteExcel.new("#{description}/InfoImage.xls")
