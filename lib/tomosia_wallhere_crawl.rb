@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'writeexcel'
 module TomosiaWallhereCrawl
 	class CrawlImage
+
 		def savedata (data = {}, description)
 		  workbook  = WriteExcel.new("#{description}/InfoImage.xls")
 		  worksheet = workbook.add_worksheet
@@ -14,13 +15,14 @@ module TomosiaWallhereCrawl
 		      worksheet.write_string(stt, 3, row['size'])
 		      end
 		    end
-		  workbook.close
+			workbook.close
+			puts "Save successfully"
 		end
-		def crawldata(key,description,max)
-			data=[]
-			
+
+		def crawldata(key,description,max=nil)	
 			  	sum = 0
-			  	index = 1
+					index = 1
+					images = []
 				while sum != max do
 				 	# Open url
 				  	url = "https://wallhere.com/en/wallpapers?q=#{key}&page=#{index}"
@@ -28,45 +30,62 @@ module TomosiaWallhereCrawl
 				  	content = document.read
 				  	parsed_content = Nokogiri::HTML(content)				  
 				  	length = parsed_content.css('.item').to_a.length - 1
-				  	if length == -1
-				  		break
-				  	else
-					  	i = 0
+						total_img = parsed_content.css('div.hub-totalinfo').text.split(' HD Wallpapers')[0].to_i
+						if max == nil || max > total_img
+							max = total_img
+							puts "This tag has #{total_img} pictures"	
+						end
+							i = 0
 					  	for i in i..length
-						    	nameimg = File.basename(parsed_content.css('.item').to_a[i].children.children.first.to_h['src']).delete('.jpg!s')
-							    # Get url img
-							    urlimg = parsed_content.css('.item').to_a[i].children.children.first.to_h['src']
-							    open(urlimg) do |image|
-								    File.open("#{description}#{nameimg}", "w+") do |file|
-								        file.write(image.read)
-								      	#Get info img
-								        n = nameimg
-								        ui = parsed_content.css('.item').to_a[i].children.children.first.to_h['src']
-								        ex = File.extname(parsed_content.css('.item').to_a[i].children.children.first.to_h['src']).delete('.!s')
-								        size = File.size("#{description}#{nameimg}")
-								        s = "#{size} kb"
-								        row = {'stt'=>i, 'name'=>n, 'url'=>ui, 'extension'=>ex, 'size'=>s}
-								        data.push(row)
-								    end
-								end
-								sum += 1
-							    if max == sum
-							      break
-							    end
-					  	end
+									urlimg = parsed_content.css('.item').to_a[i].children.children.first.to_h['src']
+									images.push(urlimg)
+										sum += 1
+										print '.'
+							   	 	if max == sum
+							      	break
+							    	end
+					  		end
+				    	index += 1
 					end
-				    index += 1
+					download(images,description)
+			end
+
+		def download(images,description)
+			data = []
+			row = {}
+			thread = []
+			images.each do |img|	
+					thread << Thread.new(img) do
+					timeout = 0
+					begin 
+						open(img) do |image|
+							nameimg = File.basename(img,".jpg!s")
+							ui = img
+							ex = File.extname(img).delete('.!s')
+							size = ""
+							File.open("#{description}#{nameimg}","wb") do |file|
+								file.write(image.read)
+								size = image.size
+							end
+							size = size.to_s + " bytes"
+							row = {"name"=>nameimg, "url"=>ui, "extension"=> ex, "size" => size}
+							data.push(row)
+						end
+					rescue => exception
+						if timeout < 3
+							timeout += 1
+							retry
+						else
+							next
+						end
+					end	
 				end
-				savedata(data,description)
-    end
-    def crawl(key,description,max = nil)
-      mutithread = (0..2).map do
-        Thread.new do
-          crawldata(key,description,max)
-        end
-      end
-      mutithread.map(&:join)
-    end
+			end
+			thread.each {|t| t.join}
+			puts " "
+			puts "Download successfully"
+			savedata(data,description)
 	end
 end
-
+end
+TomosiaWallhereCrawl::CrawlImage.new.crawldata('dog', '/home/tung/Desktop/img/',100)
