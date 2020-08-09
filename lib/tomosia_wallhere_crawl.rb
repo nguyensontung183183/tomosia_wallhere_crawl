@@ -31,9 +31,11 @@ module TomosiaWallhereCrawl
 				  	content = document.read
 				  	parsed_content = Nokogiri::HTML(content)				  
 				  	length = parsed_content.css('.item').to_a.length - 1
-				  	if length == -1
-				  		break
-				  	else
+						total_img = parsed_content.css('div.hub-totalinfo').text.split(' HD Wallpapers')[0].to_i
+						if max == nil || max > total_img
+							max = total_img
+							puts "This tag has #{total_img} pictures"	
+						end
 							i = 0
 					  	for i in i..length
 									urlimg = parsed_content.css('.item').to_a[i].children.children.first.to_h['src']
@@ -43,8 +45,7 @@ module TomosiaWallhereCrawl
 										sum += 1
 							   	 	if max == sum 
 							      	break
-							    	end
-								end
+							end
 						end
 				    	index += 1
 					end
@@ -89,6 +90,3 @@ module TomosiaWallhereCrawl
 	end
 end
 end
-# TomosiaWallhereCrawl::CrawlImage.new.crawldata("aaa", "/home/tung/Desktop/img/", 10)
-
-

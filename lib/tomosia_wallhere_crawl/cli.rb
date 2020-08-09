@@ -7,7 +7,11 @@ module TomosiaWallhereCrawl
     option :destination
     option :max
     def crawl(keyword)
-      TomosiaWallhereCrawl::CrawlImage.new.crawldata(keyword, options[:destination], options[:max])
+      if options[:max] == nil
+        TomosiaWallhereCrawl::CrawlImage.new.crawldata(keyword, options[:destination], options[:max])
+      else
+        TomosiaWallhereCrawl::CrawlImage.new.crawldata(keyword, options[:destination], options[:max].to_i)
+      end
     end
   end
 end
