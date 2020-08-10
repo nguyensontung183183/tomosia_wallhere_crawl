@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["nguyensontung18183"]
 
   spec.summary       = %q{tomosia_wallhere_crawl using download image from wallhere}
-  spec.description   = %q{Write a longer description or delete this line.}
+  spec.description   = %q{crawl images and data from page wallhere}
   spec.homepage      = "https://github.com/nguyensontung183183/tomosia_wallhere_crawl.git"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
