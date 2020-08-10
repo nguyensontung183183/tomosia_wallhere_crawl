@@ -70,6 +70,7 @@ module TomosiaWallhereCrawl
 								size = image.size
 							end
 							size = size.to_s + " bytes"
+							#Save data in hash row
 							row = {"name"=>nameimg, "url"=>ui, "extension"=> ex, "size" => size}
 							data.push(row)
 						end
