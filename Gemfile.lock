@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tomosia_wallhere_crawl (0.1.3)
+    tomosia_wallhere_crawl (0.1.4)
       nokogiri
       thor
       writeexcel

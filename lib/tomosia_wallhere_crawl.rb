@@ -65,7 +65,7 @@ module TomosiaWallhereCrawl
 							ui = img
 							ex = File.extname(img).delete('.!s')
 							size = ""
-							File.open("#{destination}#{nameimg}","wb") do |file|
+							File.open("#{destination}/#{nameimg}","wb") do |file|
 								file.write(image.read)
 								size = image.size
 							end
